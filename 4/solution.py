@@ -1,17 +1,19 @@
-from typing import List
-from functools import reduce
+"""
+This problem was asked by Stripe.
+
+Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
+
+You can modify the input array in-place.
+"""
+import unittest
 from itertools import count, filterfalse
 from time import time
+from typing import List
 
 
-def v1(l: List[int]) -> int:
-    potential_ints = set(range(1, len(l) + 1))
-    for i in l:
-        potential_ints.discard(i)
-    return min(potential_ints)
-
-
-def v2(l: List[int]) -> int:
+def set_deduction(l: List[int]) -> int:
     return min( set(range(1, len(l) + 1)) - set(l) )
 
 
@@ -22,16 +24,6 @@ def v3(l: List[int]) -> int:
 
 
 def v4(l: List[int]) -> int:
-    potential_ints = list(range(1, len(l) + 1))
-    for i in l:
-        try:
-            potential_ints.remove(i)
-        except ValueError:
-            continue
-    return min(potential_ints)
-
-
-def v5(l: List[int]) -> int:
     return next(filterfalse(set(l).__contains__, count(1)))
 
 
@@ -44,11 +36,9 @@ testcases = [
 
 
 versions = [
-    v1,
-    v2,
+    set_deduction,
     v3,
-    v4,
-    v5
+    v4
 ]
 
 
