@@ -17,36 +17,29 @@ def set_deduction(l: List[int]) -> int:
     return min( set(range(1, len(l) + 1)) - set(l) )
 
 
-def v3(l: List[int]) -> int:
+def loop(l: List[int]) -> int:
     for i in range(1, len(l) + 1):
         if i not in l:
             return i
 
 
-def v4(l: List[int]) -> int:
+def ffalse(l: List[int]) -> int:
     return next(filterfalse(set(l).__contains__, count(1)))
 
 
-testcases = [
-    ([3, 4, -1, 1], 2),
-    ([1, 2, 0], 3),
-    ([10, 10, 1, 1, 2, 3], 4),
-    ([x if x is not 30 else -1 for x in range(100)], 30)
-]
+class TestSolutions(unittest.TestCase):
+    def test_division(self: 'TestSolutions'):
+        self.assertEqual(set_deduction([3, 4, -1, 1]), 2)
+        self.assertEqual(set_deduction([1, 2, 0]), 3)
+
+    def test_loop(self: 'TestSolutions'):
+        self.assertEqual(loop([3, 4, -1, 1]), 2)
+        self.assertEqual(loop([1, 2, 0]), 3)
+
+    def test_ffalse(self: 'TestSolutions'):
+        self.assertEqual(ffalse([3, 4, -1, 1]), 2)
+        self.assertEqual(ffalse([1, 2, 0]), 3)
 
 
-versions = [
-    set_deduction,
-    v3,
-    v4
-]
-
-
-for inp, target in testcases:
-    for func in versions:
-        start = time()
-        for _ in range(1000000):
-            func(inp)
-        time_needed = time() - start
-        print(func, inp, target, func(inp), time_needed)
-        assert func(inp) == target
+if __name__ == '__main__':
+    unittest.main()
