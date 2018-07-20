@@ -36,7 +36,7 @@ func TestXorListGet(t *testing.T) {
 		n.add(&xorNode{value: i})
 	}
 
-	indices := [3]int{0, 1, 7}
+	indices := [4]int{0, 1, 7, 9}
 	for i := range indices {
 		if r := n.get(i); r.value != i {
 			t.Errorf("Expected %d got %d", i, n.value)
