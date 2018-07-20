@@ -26,6 +26,7 @@ class TestSolutions(unittest.TestCase):
         self.assertEqual(count_ways('1'), 1)
         self.assertEqual(count_ways('10'), 1)
         self.assertEqual(count_ways('101'), 1)
+        self.assertEqual(count_ways('1010'), 1)
         self.assertEqual(count_ways('27'), 1)
         self.assertEqual(count_ways('111'), 3)
 
