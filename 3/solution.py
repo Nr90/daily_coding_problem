@@ -25,11 +25,11 @@ class Node:
         self.right = right
 
 
-def serialize(node: Node) -> str:
+def serialize(node: Node) -> bytes:
     return pickle.dumps(node)
 
 
-def deserialize(node_str: str) -> Node:
+def deserialize(node_str: bytes) -> Node:
     return pickle.loads(node_str)
 
 
