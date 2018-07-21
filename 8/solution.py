@@ -38,6 +38,7 @@ def count_unival_subtrees(root: Optional[BinaryTreeNode]) -> int:
     right = count_unival_subtrees(root.right)
     return 1 + left + right if root.is_unival() else left + right
 
+
 def unival_rec(root: Optional[BinaryTreeNode], value: int) -> bool:
     if root is None:
         return True
