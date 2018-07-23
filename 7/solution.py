@@ -11,7 +11,7 @@ import unittest
 
 
 def count_ways(message):
-    if len(message) == 0 or len(message) == 1:
+    if len(message) <= 1:
         return 1
     if int(message[0:2]) > 26:
         return count_ways(message[1:])
