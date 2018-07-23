@@ -10,7 +10,7 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 import unittest
 
 
-def count_ways(message):
+def count_ways(message: str) -> int:
     if len(message) <= 1:
         return 1
     if int(message[0:2]) > 26:
