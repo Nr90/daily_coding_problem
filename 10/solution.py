@@ -6,21 +6,21 @@ Implement a job scheduler which takes in a function f and an integer n, and call
 import unittest
 from time import sleep
 from threading import Timer
+from typing import Callable
  
 
-def schedule(f, n):
+def schedule(f: Callable, n: int) -> None:
     Timer(n / 1000, f).start()
 
 
 class TestSolutions(unittest.TestCase):
-    def test_func(self: 'TestSolutions'):
-        global test
+    def test_func(self: 'TestSolutions') -> None:
+        self.test = False
         def func():
-            global test
-            test = True
+            self.test = True
         schedule(func, 1000)
         sleep(1.5)
-        self.assertTrue(test)
+        self.assertTrue(self.test)
 
 
 if __name__ == '__main__':
