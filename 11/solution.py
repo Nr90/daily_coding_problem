@@ -11,26 +11,31 @@ return [deer, deal].
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
 """
 import unittest
-from typing import List
+from typing import List, Iterator
  
 
-
-def simple_autocomplete(s: str, possible: List[str]) -> List[str]:
+def simple_autocomplete(s: str, possible: List[str]) -> Iterator[str]:
     return filter(lambda x: x.startswith(s), possible)
 
 
 class TestSolutions(unittest.TestCase):
-    def test_simple_autocomplete(self: 'TestSolutions') -> None:
-        test_cases = [
-            ('de', ['door', 'deer', 'deal'], ['deer', 'deal']),
-            ('', ['door', 'deer', 'deal'], ['door', 'deer', 'deal']),
-            ('elbert', ['door', 'deer', 'deal'], [])
-        ]
-        for c in test_cases:
-            self.assertEqual(
-                sorted(simple_autocomplete(c[0], c[1])),
-                sorted(c[2]))
+    def test_empty_query(self: 'TestSolutions') -> None:
+        self.assertEqual(
+            sorted(simple_autocomplete('', ['door', 'deer', 'deal'])),
+            sorted(['door', 'deer', 'deal'])
+        )
 
+    def test_non_matching_query(self: 'TestSolutions') -> None:
+        self.assertEqual(
+            sorted(simple_autocomplete('elbert', ['door', 'deer', 'deal'])),
+            sorted([])
+        )
+
+    def test_given_example(self: 'TestSolutions') -> None:
+        self.assertEqual(
+            sorted(simple_autocomplete('de', ['door', 'deer', 'deal'])),
+            sorted(['deer', 'deal'])
+        )
 
 
 if __name__ == '__main__':
