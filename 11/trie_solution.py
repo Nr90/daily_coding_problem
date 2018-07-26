@@ -11,15 +11,15 @@ return [deer, deal].
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
 """
 import unittest
-from typing import List, Iterator
+from typing import Optional, List, Dict
  
 
 class TrieNode:
-    def __init__(self, char=''):
+    def __init__(self, char: str='') -> None:
         self.char = char
-        self.children = {}
+        self.children = dict()  # type: Dict[str, 'TrieNode']
 
-    def add(self, word):
+    def add(self, word: str) -> None:
         if not word:
             return
         l = word[0]
@@ -27,23 +27,23 @@ class TrieNode:
             self.children[l] = TrieNode(l)
         self.children[l].add(word[1:])
 
-    def get_with_prefix(self, prefix):
+    def get_with_prefix(self, prefix: str) -> Optional['TrieNode']:
         if not prefix:
             return self
         if prefix[0] not in self.children:
             return None
         return self.children[prefix[0]].get_with_prefix(prefix[1:])
     
-    def get_child_words(self):
+    def get_child_words(self) -> List[str]:
         if len(self.children) == 0:
             return [self.char]
-        child_words = []
+        child_words = []  # type: List[str]
         for c in self.children.values():
             child_words += [self.char + w for w  in c.get_child_words()]
         return child_words
 
 
-def trie_autocomplete(s: str, possible: List[str]) -> Iterator[str]:
+def trie_autocomplete(s: str, possible: List[str]) -> List[str]:
     root = TrieNode()
     for w in possible:
         root.add(w)
