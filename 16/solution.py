@@ -24,7 +24,6 @@ def get_logger() -> Tuple[Callable, Callable]:
     return record, get_last
 
 
-
 class TestSolution(unittest.TestCase):
     def test_small(self: 'TestSolution') -> None:
         record, get_last = get_logger()
