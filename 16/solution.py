@@ -19,7 +19,7 @@ def get_logger() -> Tuple[Callable, Callable]:
         log.append(order_id)
     
     def get_last(i: int) -> int:
-        return log[-i + 1]
+        return log[-i]
     
     return record, get_last
 
@@ -30,13 +30,13 @@ class TestSolution(unittest.TestCase):
         record, get_last = get_logger()
         for i in range(5):
             record(i)
-        self.assertEqual(get_last(2), 4)
+        self.assertEqual(get_last(1), 4)
 
     def test_large(self: 'TestSolution') -> None:
         record, get_last = get_logger()
         for i in range(10000000):
             record(i)
-        self.assertEqual(get_last(2), 9999999)
+        self.assertEqual(get_last(1), 9999999)
 
 
 if __name__ == '__main__':
