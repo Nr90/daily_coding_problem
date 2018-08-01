@@ -11,7 +11,7 @@ You should be as efficient with time and space as possible.
 """
 from collections import deque
 import unittest
-from typing import Callable, List, Tuple
+from typing import Callable, Tuple
 
 
 def get_logger(N: int) -> Tuple[Callable, Callable]:
