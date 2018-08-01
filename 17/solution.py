@@ -55,14 +55,12 @@ def get_path(fs_lines: List[str], l_idx: int) -> str:
 
 
 def longest_path(fs_str: str) -> int:
-    if '.' not in fs_str:
-        return 0
     lines = fs_str.split('\n')
-    paths = []
+    longest = 0
     for i, l in enumerate(lines):
         if '.' in l:
-            paths.append(get_path(lines, i))
-    return max(map(len, paths))
+            longest = max(longest, len(get_path(lines, i)))
+    return longest
 
 
 class TestSolution(unittest.TestCase):
