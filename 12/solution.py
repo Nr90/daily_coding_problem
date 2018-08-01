@@ -21,21 +21,18 @@ from typing import Set
  
 
 def count_unique_ways(N: int) -> int:
-    if N <= 1:
-        return 1
-    return count_unique_ways(N-2) + count_unique_ways(N-1)
+    a, b = 1, 2
+    for _ in range(N - 1):
+        a, b = b, a + b
+    return a
 
 
 def count_unique_ways_with_steps(N: int, steps: Set[int]) -> int:
-    if N == 0:
-        return 1
-    if min(steps) > N:
-        return 0
-    ways = 0
-    for s in steps:
-        ways += count_unique_ways_with_steps(N-s, steps)
-    return ways
-
+    cache = [0 for _ in range(N + 1)]
+    cache[0] = 1
+    for i in range(1, N + 1):
+        cache[i] += sum(cache[i - x] for x in steps if i - x >= 0)
+    return cache[N]
 
 
 class TestSolutions(unittest.TestCase):
