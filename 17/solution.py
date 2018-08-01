@@ -40,7 +40,7 @@ The name of a file contains at least a period and an extension.
 The name of a directory or sub-directory will not contain a period.
 """
 import unittest
-from typing import Callable, List, Tuple
+from typing import List
 
 
 def get_path(fs_lines: List[str], l_idx: int) -> str:
