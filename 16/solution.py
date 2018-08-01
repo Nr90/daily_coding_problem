@@ -9,30 +9,31 @@ Implement a data structure to accomplish this, with the following API:
 
 You should be as efficient with time and space as possible.
 """
+from collections import deque
 import unittest
 from typing import Callable, List, Tuple
 
 
-def get_logger() -> Tuple[Callable, Callable]:
-    log = []  # type: List[int]
+def get_logger(N: int) -> Tuple[Callable, Callable]:
+    d = deque(maxlen=N)
     def record(order_id: int) -> None:
-        log.append(order_id)
+        d.append(order_id)
     
     def get_last(i: int) -> int:
-        return log[-i]
+        return d[-i]
     
     return record, get_last
 
 
 class TestSolution(unittest.TestCase):
     def test_small(self: 'TestSolution') -> None:
-        record, get_last = get_logger()
+        record, get_last = get_logger(100)
         for i in range(5):
             record(i)
         self.assertEqual(get_last(1), 4)
 
     def test_large(self: 'TestSolution') -> None:
-        record, get_last = get_logger()
+        record, get_last = get_logger(100)
         for i in range(10000000):
             record(i)
         self.assertEqual(get_last(1), 9999999)
