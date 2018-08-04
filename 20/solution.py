@@ -24,7 +24,7 @@ def find_intersection(A: Node, B: Node) -> Optional[Node]:
         return None
     
     a, b = A, B
-    while a.value != b.value:
+    while a is not b:
         if a == None:
             a = B
         else:
@@ -38,18 +38,12 @@ def find_intersection(A: Node, B: Node) -> Optional[Node]:
 
 class TestSolution(unittest.TestCase):
     def test_given(self) -> None:
-        A = Node(3, Node(7, Node(8, Node(10))))
-        B = Node(99, Node(1, Node(8, Node(10))))
+        shared = Node(8, Node(10))
+        A = Node(3, Node(7, shared))
+        B = Node(99, Node(1, shared))
         inter = find_intersection(A, B)
         assert inter
         self.assertEqual(inter.value, 8)
-
-    def test_alternative(self) -> None:
-        A = Node(3, Node(8, Node(7, Node(10))))
-        B = Node(99, Node(1, Node(8, Node(10))))
-        inter = find_intersection(A, B)
-        assert inter
-        self.assertEqual(inter.value, 10)
 
 
 if __name__ == '__main__':
