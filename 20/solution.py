@@ -43,7 +43,15 @@ class TestSolution(unittest.TestCase):
         B = Node(99, Node(1, shared))
         inter = find_intersection(A, B)
         assert inter
-        self.assertEqual(inter.value, 8)
+        self.assertEqual(inter, shared)
+
+    def test_unequal_length(self) -> None:
+        shared = Node(8, Node(10))
+        A = Node(7, shared)
+        B = Node(99, Node(1, shared))
+        inter = find_intersection(A, B)
+        assert inter
+        self.assertEqual(inter, shared)
 
 
 if __name__ == '__main__':
