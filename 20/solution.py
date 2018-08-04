@@ -10,7 +10,7 @@ In this example, assume nodes with the same value are the exact same node object
 Do this in O(M + N) time (where M and N are the lengths of the lists) and constant space.
 """
 import unittest
-from typing import Generator, Optional, Iterator
+from typing import Optional
 
 
 class Node:
@@ -23,16 +23,16 @@ def find_intersection(A: Node, B: Node) -> Optional[Node]:
     if A is None or B is None:
         return None
     
-    a, b = A, B
+    a, b = A, B  # type: Optional[Node], Optional[Node]
     while a is not b:
-        if a == None:
-            a = B
-        else:
+        if a is not None:
             a = a.next
-        if b == None:
-            b = A
         else:
+            a = B
+        if b is not None:
             b = b.next
+        else:
+            b = A
     return a
 
 
