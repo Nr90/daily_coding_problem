@@ -8,12 +8,30 @@ Given an N by K matrix where the nth row and kth column represents the cost to b
 return the minimum cost which achieves this goal.
 """
 import unittest
+from typing import List, Optional
+from math import inf
 
+
+def min_cost(matrix: List[List[float]], prev_color: Optional[int]=None) -> float:
+    if len(matrix) == 1:
+        if prev_color is None:
+            return min(matrix[0])
+        return min(matrix[0][:prev_color] + matrix[0][(prev_color + 1):])
+    cost = inf
+    for i, r in enumerate(matrix):
+        if i != prev_color:
+            cost = min(cost, r[i] + min_cost(matrix[1:], i))
+    return cost
 
 
 class TestSolution(unittest.TestCase):
-    def test_given(self) -> None:
-        self.assertEqual(True, True)
+    def test_one_house(self) -> None:
+        cost_m = [[5.0, 8.0, 3.0]]
+        self.assertEqual(min_cost(cost_m), 3.0)
+
+    def test_two_houses_two_colors(self) -> None:
+        cost_m = [[5.0, 8.0], [8.0, 5.0]]
+        self.assertEqual(min_cost(cost_m), 10.0)
 
 
 if __name__ == '__main__':
