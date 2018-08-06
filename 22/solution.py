@@ -7,17 +7,20 @@ If there is more than one possible reconstruction, return any of them.
 If there is no possible reconstruction, then return null.
 
 For example, given the set of words 'quick', 'brown', 'the', 'fox',
-and the string "thequickbrownfox", you should return ['the', 'quick', 'brown', 'fox'].
+and the string "thequickbrownfox",
+you should return ['the', 'quick', 'brown', 'fox'].
 
 Given the set of words 'bed', 'bath', 'bedbath', 'and', 'beyond',
-and the string "bedbathandbeyond", return either ['bed', 'bath', 'and', 'beyond]
+and the string "bedbathandbeyond",
+return either ['bed', 'bath', 'and', 'beyond]
 or ['bedbath', 'and', 'beyond'].
 """
 import unittest
 from typing import List, Optional
 
 
-def reconstruct(words: List[str], s: str, reconstruction: List[str]=[]) -> Optional[List[str]]:
+def reconstruct(words: List[str], s: str,
+                reconstruction: List[str]=[]) -> Optional[List[str]]:
     if not s:
         return reconstruction
     for w in words:
