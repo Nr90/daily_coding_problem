@@ -5,14 +5,16 @@ Implement an autocomplete system.
 That is, given a query string s and a set of all possible query strings,
 return all strings in the set that s as a prefix.
 
-For example, given the query string de and the set of strings [door, deer, deal],
+For example,
+given the query string de and the set of strings [door, deer, deal],
 return [deer, deal].
 
-Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+Hint: Try preprocessing the dictionary
+into a more efficient data structure to speed up queries.
 """
 import unittest
 from typing import Optional, List, Dict
- 
+
 
 class TrieNode:
     def __init__(self, char: str='') -> None:
@@ -33,13 +35,13 @@ class TrieNode:
         if prefix[0] not in self.children:
             return None
         return self.children[prefix[0]].get_with_prefix(prefix[1:])
-    
+  
     def get_child_words(self) -> List[str]:
         if len(self.children) == 0:
             return [self.char]
         child_words = []  # type: List[str]
         for c in self.children.values():
-            child_words += [self.char + w for w  in c.get_child_words()]
+            child_words += [self.char + w for w in c.get_child_words()]
         return child_words
 
 

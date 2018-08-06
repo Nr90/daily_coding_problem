@@ -5,14 +5,16 @@ Implement an autocomplete system.
 That is, given a query string s and a set of all possible query strings,
 return all strings in the set that s as a prefix.
 
-For example, given the query string de and the set of strings [door, deer, deal],
+For example,
+given the query string de and the set of strings [door, deer, deal],
 return [deer, deal].
 
-Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+Hint: Try preprocessing the dictionary
+into a more efficient data structure to speed up queries.
 """
 import unittest
-from typing import List, Iterator
- 
+from typing import Iterator, List
+
 
 def simple_autocomplete(s: str, possible: List[str]) -> Iterator[str]:
     return filter(lambda x: x.startswith(s), possible)

@@ -1,13 +1,14 @@
 """
 This problem was asked by Apple.
 
-Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+Implement a job scheduler which takes in a function f and an integer n,
+and calls f after n milliseconds.
 """
 import unittest
-from time import sleep
 from threading import Timer
+from time import sleep
 from typing import Callable
- 
+
 
 def schedule(f: Callable, n: int) -> None:
     Timer(n / 1000, f).start()
@@ -16,6 +17,7 @@ def schedule(f: Callable, n: int) -> None:
 class TestSolutions(unittest.TestCase):
     def test_func(self: 'TestSolutions') -> None:
         self.test = False
+
         def func():
             self.test = True
         schedule(func, 1000)

@@ -21,11 +21,11 @@ import unittest
 from collections import deque
 from contextlib import contextmanager
 from io import StringIO
-from typing import List
+from typing import Deque, List
 
 
 def window_max(arr: List[int], k: int) -> None:
-    d = deque()
+    d = deque()  # type: Deque[int]
     for i, val in enumerate(arr):
         while len(d) > 0 and val > d[-1]:
             d.pop()

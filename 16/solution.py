@@ -5,24 +5,25 @@ You run an e-commerce website and want to record the last N order ids in a log.
 Implement a data structure to accomplish this, with the following API:
 
     record(order_id): adds the order_id to the log
-    get_last(i): gets the ith last element from the log. i is guaranteed to be smaller than or equal to N.
+    get_last(i): gets the ith last element from the log.
+                 i is guaranteed to be smaller than or equal to N.
 
 You should be as efficient with time and space as possible.
 """
 import unittest
 from collections import deque
-from typing import Callable, Tuple
+from typing import Callable, Tuple, Deque
 
 
 def get_logger(N: int) -> Tuple[Callable, Callable]:
-    d = deque(maxlen=N)
+    d = deque(maxlen=N)  # type: Deque[int]
 
     def record(order_id: int) -> None:
         d.append(order_id)
-    
+
     def get_last(i: int) -> int:
         return d[-i]
-    
+
     return record, get_last
 
 
