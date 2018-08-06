@@ -1,13 +1,16 @@
 """
 This problem was asked by Amazon.
 
-Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+Given an integer k and a string s,
+find the length of the longest substring
+that contains at most k distinct characters.
 
-For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".
+For example, given s = "abcba" and k = 2,
+the longest substring with k distinct characters is "bcb".
 """
 import unittest
 from typing import List
- 
+
 
 def is_valid(s: str, k: int) -> bool:
     return len(set(s)) <= k

@@ -26,7 +26,7 @@ class Node:
 def find_intersection(A: Node, B: Node) -> Optional[Node]:
     if A is None or B is None:
         return None
-    
+
     a, b = A, B  # type: Optional[Node], Optional[Node]
     while a is not b:
         if a is not None:

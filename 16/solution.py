@@ -9,13 +9,14 @@ Implement a data structure to accomplish this, with the following API:
 
 You should be as efficient with time and space as possible.
 """
-from collections import deque
 import unittest
+from collections import deque
 from typing import Callable, Tuple
 
 
 def get_logger(N: int) -> Tuple[Callable, Callable]:
     d = deque(maxlen=N)
+
     def record(order_id: int) -> None:
         d.append(order_id)
     

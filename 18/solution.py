@@ -12,15 +12,16 @@ we should get: [10, 7, 8, 8], since:
 8 = max(2, 7, 8)
 8 = max(7, 8, 7)
 Do this in O(n) time and O(k) space.
-You can modify the input array in-place and you do not need to store the results.
+You can modify the input array in-place and
+you do not need to store the results.
 You can simply print them out as you compute them.
 """
+import sys
 import unittest
-from typing import List
+from collections import deque
 from contextlib import contextmanager
 from io import StringIO
-import sys
-from collections import deque
+from typing import List
 
 
 def window_max(arr: List[int], k: int) -> None:
