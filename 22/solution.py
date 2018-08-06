@@ -14,10 +14,10 @@ and the string "bedbathandbeyond", return either ['bed', 'bath', 'and', 'beyond]
 or ['bedbath', 'and', 'beyond'].
 """
 import unittest
-from typing import List
+from typing import List, Optional
 
 
-def reconstruct(words: List[str], s: str, reconstruction: List[str]=[]) -> List[str]:
+def reconstruct(words: List[str], s: str, reconstruction: List[str]=[]) -> Optional[List[str]]:
     if not s:
         return reconstruction
     for w in words:
@@ -31,9 +31,9 @@ def reconstruct(words: List[str], s: str, reconstruction: List[str]=[]) -> List[
 
 class TestSolution(unittest.TestCase):
     def test_empty_string(self) -> None:
-        words = []
+        words = []  # type: List[str]
         s = ''
-        expected = []
+        expected = []  # type: List[str]
         self.assertEqual(reconstruct(words, s), expected)
 
     def test_given1(self) -> None:
