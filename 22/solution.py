@@ -45,11 +45,12 @@ class TestSolution(unittest.TestCase):
     def test_given2(self) -> None:
         words = ['bed', 'bath', 'bedbath', 'and', 'beyond']
         s = 'bedbathandbeyond'
-        expected1 = ['bedbath', 'and', 'beyond']
-        expected2 = ['bed', 'bath', 'and', 'beyond']
+        expectations = [
+            ['bedbath', 'and', 'beyond'],
+            ['bed', 'bath', 'and', 'beyond']
+        ]
         self.assertTrue(
-            reconstruct(words, s) == expected1 
-            or reconstruct(words, s) == expected2 
+            reconstruct(words, s) in expectations
         )
 
     def test_no_reconstruction(self) -> None:
