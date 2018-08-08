@@ -96,12 +96,12 @@ class TestSolution(unittest.TestCase):
         self.tree['F'].parent = self.tree['C']
         self.tree['G'].parent = self.tree['C']
 
-    def test_lock_parent(self) -> None:
+    def test_lock_with_locked_parent(self) -> None:
         self.assertTrue(self.tree['A'].lock())
         self.assertFalse(self.tree['B'].lock())
         self.assertFalse(self.tree['F'].lock())
 
-    def test_lock_child(self) -> None:
+    def test_lock__with_locked_child(self) -> None:
         self.assertTrue(self.tree['G'].lock())
         self.assertFalse(self.tree['C'].lock())
         self.assertFalse(self.tree['A'].lock())
@@ -111,16 +111,16 @@ class TestSolution(unittest.TestCase):
         self.assertTrue(self.tree['A'].lock())
         self.assertTrue(self.tree['A'].is_locked())
 
-    def test_unlock_self(self) -> None:
+    def test_unlock_same_node(self) -> None:
         self.assertTrue(self.tree['A'].lock())
         self.assertTrue(self.tree['A'].unlock())
 
-    def test_unlock_parent(self) -> None:
+    def test_unlock_with_locked_parent(self) -> None:
         self.assertTrue(self.tree['A'].lock())
         self.tree['B'].locked = True
         self.assertFalse(self.tree['B'].unlock())
 
-    def test_unlock_child(self) -> None:
+    def test_unlock_with_locked_child(self) -> None:
         self.assertTrue(self.tree['G'].lock())
         self.tree['C'].locked = True
         self.assertFalse(self.tree['C'].unlock())
