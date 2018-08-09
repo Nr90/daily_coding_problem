@@ -46,7 +46,7 @@ def regex(re: str, s: str) -> bool:
                 return False
             sl.pop(0)
         prev = c
-    if sl:
+    if sl or rel:
         return False
     return True
 
