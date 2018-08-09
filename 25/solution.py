@@ -43,7 +43,6 @@ def regex(re: str, s: str) -> bool:
             sl.pop(0)
         else:
             if c is not sl[0]:
-                print(rel, sl)
                 return False
             sl.pop(0)
         prev = c
