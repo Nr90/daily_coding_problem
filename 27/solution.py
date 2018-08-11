@@ -38,6 +38,12 @@ class TestSolution(unittest.TestCase):
     def test_given_false(self) -> None:
         self.assertFalse(check_balance(r'([)]'))
 
+    def test_only_open(self) -> None:
+        self.assertFalse(check_balance(r'('))
+
+    def test_only_close(self) -> None:
+        self.assertFalse(check_balance(r')'))
+
 
 if __name__ == '__main__':
     unittest.main()
