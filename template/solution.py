@@ -3,7 +3,6 @@
 import unittest
 
 
-
 class TestSolution(unittest.TestCase):
     def test_given(self) -> None:
         self.assertEqual(True, True)
