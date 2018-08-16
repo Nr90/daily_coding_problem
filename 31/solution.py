@@ -12,8 +12,10 @@ substitute the “k” for “s”, substitute the “e” for “i”, and appe
 Given two strings, compute the edit distance between them.
 """
 import unittest
+from functools import lru_cache
 
 
+@lru_cache()
 def levenshtein(s1: str, s2: str) -> int:
     if not s1:
         return len(s2)
