@@ -20,12 +20,25 @@ class BSTN:
 
 def find_second_largest(root: BSTN) -> BSTN:
     current = root
+    # special case when only two elements are present in tree
+    if current.left and not current.right:
+        return current.left
     while current.right and current.right.right:
         current = current.right
     return current
 
 
 class TestSolution(unittest.TestCase):
+    def test_find_second_largest_two_elements(self) -> None:
+        r"""
+          3
+         /
+        1
+        """
+        root = BSTN(3, BSTN(1))
+        second_largest = find_second_largest(root)
+        self.assertEqual(second_largest.value, 1)
+
     def test_find_second_largest_small(self) -> None:
         r"""
           3
