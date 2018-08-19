@@ -29,7 +29,7 @@ def find_palindrome(s: str) -> str:
     while l > 0:
         for i in range(0, len(s) - l):
             if is_palindrome(s[i:i+l]):
-                return s[i+l:][::-1] + s[i:i+l] + s[i+l:]
+                return s[:i] + s[i+l:][::-1] + s[i:i+l] + s[i+l:] + s[:i]
         l -= 1
     raise Exception("Could not create palindrome")
 
@@ -49,6 +49,9 @@ class TestSolution(unittest.TestCase):
 
     def test_given_google(self) -> None:
         self.assertEqual(find_palindrome('google'), 'elgoogle')
+
+    def test_alternative(self) -> None:
+        self.assertEqual(find_palindrome('aagoogbb'), 'aabbgoogbbaa')
 
 
 if __name__ == '__main__':
