@@ -12,11 +12,12 @@ There are no transaction costs and you can trade fractional quantities.
 """
 import unittest
 from math import log
+from typing import List
 
 
 # fixed code from:
 # https://www.dailycodingproblem.com/blog/how-to-find-arbitrage-opportunities-in-python/
-def arbitrage(table):
+def arbitrage(table: List[List[float]]) -> bool:
     transformed_graph = [[-log(edge) for edge in row] for row in table]
 
     # Pick any source vertex -- we can run Bellman-Ford from any vertex and
@@ -28,7 +29,7 @@ def arbitrage(table):
     min_dist[source] = 0
 
     # Relax edges |V - 1| times
-    for i in range(n - 1):
+    for _ in range(n - 1):
         for v in range(n):
             for w in range(n):
                 if min_dist[w] > min_dist[v] + transformed_graph[v][w]:
