@@ -17,6 +17,8 @@ from typing import List
 
 # solution reimplemented based on:
 # https://www.geeksforgeeks.org/find-the-element-that-appears-once/
+# the idea is that if we add all the bits for every value of the array
+# then the result we want are the bits that do not occur a multiple of 3 times
 def unique(arr: List[int]) -> int:
     result = 0
     # for every bit
