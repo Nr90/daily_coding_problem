@@ -10,9 +10,9 @@ Given [13, 19, 13, 13], return 19.
 
 Do this in O(N) time and O(1) space.
 """
+import ctypes
 import unittest
 from typing import List
-import ctypes
 
 
 # solution reimplemented based on:
