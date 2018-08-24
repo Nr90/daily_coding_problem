@@ -23,12 +23,27 @@ even though ['A', 'C', 'A', 'B', 'C'] is also a valid itinerary.
 However, the first one is lexicographically smaller.
 """
 import unittest
-from typing import List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
+from operator import itemgetter
 
 
 def itinerary(flights: List[Tuple[str, str]],
               start: str) -> Optional[List[str]]:
-    return []
+    it = [start]
+    while flights:
+        options = []  # type: List[Tuple[int, str]]
+        for i, f in enumerate(flights):
+            # if departure equals current place
+            if it[-1] == f[0]:
+                options.append((i, f[1]))
+        if not options:
+            return None
+        # get first stop in lexicographical order
+        next_f = min(options, key=itemgetter(1))
+        it.append(next_f[1])
+        # remove the flight from the list
+        flights.pop(next_f[0])
+    return it
 
 
 class TestSolution(unittest.TestCase):
