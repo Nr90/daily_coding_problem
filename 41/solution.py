@@ -24,24 +24,22 @@ However, the first one is lexicographically smaller.
 """
 import unittest
 from typing import Dict, List, Optional, Tuple
-from operator import itemgetter
 
 
 def itinerary(flights: List[Tuple[str, str]],
               start: str) -> Optional[List[str]]:
     it = [start]
     while flights:
-        options = []  # type: List[Tuple[int, str]]
+        next_f = None  # type: Optional[Tuple[int, str]]
         for i, f in enumerate(flights):
-            # if departure equals current place
-            if it[-1] == f[0]:
-                options.append((i, f[1]))
-        if not options:
+            # pylint: disable=E1136
+            # this is done because pylint ignores control flow to
+            # check if next_f is subscriptable in the next statement:
+            if it[-1] == f[0] and (not next_f or f[1] < next_f[1]):
+                next_f = (i, f[1])
+        if not next_f:
             return None
-        # get first stop in lexicographical order
-        next_f = min(options, key=itemgetter(1))
         it.append(next_f[1])
-        # remove the flight from the list
         flights.pop(next_f[0])
     return it
 
