@@ -30,17 +30,16 @@ def itinerary(flights: List[Tuple[str, str]],
               start: str) -> Optional[List[str]]:
     it = [start]
     while flights:
-        next_f = None  # type: Optional[Tuple[int, str]]
+        next_stop = ''
+        fi = -1
         for i, f in enumerate(flights):
-            # pylint: disable=E1136
-            # this is done because pylint ignores control flow to
-            # check if next_f is subscriptable in the next statement:
-            if it[-1] == f[0] and (not next_f or f[1] < next_f[1]):
-                next_f = (i, f[1])
-        if not next_f:
+            if it[-1] == f[0] and (not next_stop or f[1] < next_stop):
+                next_stop = f[1]
+                fi = i
+        if not next_stop:
             return None
-        it.append(next_f[1])
-        flights.pop(next_f[0])
+        it.append(next_stop)
+        flights.pop(fi)
     return it
 
 
