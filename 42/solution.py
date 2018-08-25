@@ -12,11 +12,20 @@ For example, given S = [12, 1, 61, 5, 9, 2] and k = 24,
 return [12, 9, 2, 1] since it sums up to 24.
 """
 import unittest
-from typing import List
+from typing import List, Optional
 
 
-def subset_sum(S: List[int], k: int) -> List[int]:
-    return []
+def subset_sum(S: List[int], k: int) -> Optional[List[int]]:
+    sum_S = sum(S)
+    if sum_S == k:
+        return S
+    if sum_S < k:
+        return None
+    for j in range(len(S)):
+        res = subset_sum([x for i, x in enumerate(S) if i != j], k)
+        if res:
+            return sorted(res, reverse=True)
+    return None
 
 
 class TestSolution(unittest.TestCase):
