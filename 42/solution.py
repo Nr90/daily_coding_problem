@@ -21,8 +21,8 @@ def subset_sum(S: List[int], k: int) -> Optional[List[int]]:
         return S
     if sum_S < k:
         return None
-    for j in range(len(S)):
-        res = subset_sum([x for i, x in enumerate(S) if i != j], k)
+    for i in range(len(S)):
+        res = subset_sum(S[:i] + S[i+1:], k)
         if res:
             return sorted(res, reverse=True)
     return None
