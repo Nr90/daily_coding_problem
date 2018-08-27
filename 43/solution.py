@@ -33,9 +33,8 @@ class MaxStack:
                 self.max_stack.append(self.max_stack[-1])
 
     def pop(self) -> Any:
-        val = self.stack.pop()
         self.max_stack.pop()
-        return val
+        return self.stack.pop()
 
     def max(self) -> Any:
         return self.max_stack[-1]
