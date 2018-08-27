@@ -20,25 +20,31 @@ from typing import List, Any
 
 class Stack:
     def __init__(self) -> None:
-        pass
+        self.s = []  # type: List[Any]
+        self.m = None
 
     def push(self, val: Any) -> None:
-        pass
+        if not self.m or val > self.m:
+            self.m = val
+        self.s.append(val)
 
     def pop(self) -> Any:
-        return 0
+        return self.s.pop()
 
     def max(self) -> Any:
-        return 0
+        return self.m
 
 
 class TestSolution(unittest.TestCase):
     def test_stack(self) -> None:
         s = Stack()
+        s.push(10)
         s.push(11)
         s.push(10)
         self.assertEqual(s.max(), 11)
         self.assertEqual(s.pop(), 10)
+        self.assertEqual(s.pop(), 11)
+        self.assertEqual(s.max(), 10)
 
 
 if __name__ == '__main__':
