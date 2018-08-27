@@ -15,6 +15,21 @@ then it should throw an error or return null.
 Each method should run in constant time.
 """
 import unittest
+from typing import List, Any
+
+
+class Stack:
+    def __init__(self) -> None:
+        pass
+
+    def push(self, val: Any) -> None:
+        pass
+
+    def pop(self) -> Any:
+        return 0
+
+    def max(self) -> Any:
+        return 0
 
 
 class TestSolution(unittest.TestCase):
