@@ -16,7 +16,7 @@ import unittest
 from typing import List, Any
 
 
-class Stack:
+class MaxStack:
     def __init__(self) -> None:
         self.stack = []  # type: List[Any]
         self.max_stack = []  # type: List[Any]
@@ -43,7 +43,7 @@ class Stack:
 
 class TestSolution(unittest.TestCase):
     def test_stack(self) -> None:
-        s = Stack()
+        s = MaxStack()
         s.push(10)
         s.push(11)
         s.push(10)
