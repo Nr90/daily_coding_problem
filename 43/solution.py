@@ -18,19 +18,27 @@ from typing import List, Any
 
 class Stack:
     def __init__(self) -> None:
-        self.s = []  # type: List[Any]
-        self.m = None
+        self.stack = []  # type: List[Any]
+        self.max_stack = []  # type: List[Any]
 
     def push(self, val: Any) -> None:
-        if not self.m or val > self.m:
-            self.m = val
-        self.s.append(val)
+        if not self.stack:
+            self.stack.append(val)
+            self.max_stack.append(val)
+        else:
+            self.stack.append(val)
+            if val > self.max_stack[-1]:
+                self.max_stack.append(val)
+            else:
+                self.max_stack.append(self.max_stack[-1])
 
     def pop(self) -> Any:
-        return self.s.pop()
+        val = self.stack.pop()
+        self.max_stack.pop()
+        return val
 
     def max(self) -> Any:
-        return self.m
+        return self.max_stack[-1]
 
 
 class TestSolution(unittest.TestCase):
@@ -46,7 +54,8 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(s.pop(), 10)
         with self.assertRaises(IndexError):
             s.pop()
-        self.assertEqual(s.max(), None)
+        with self.assertRaises(IndexError):
+            s.max()
 
 
 if __name__ == '__main__':
