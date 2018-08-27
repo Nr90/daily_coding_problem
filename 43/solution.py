@@ -1,6 +1,4 @@
 """
-Good morning! Here's your coding interview problem for today.
-
 This problem was asked by Amazon.
 
 Implement a stack that has the following methods:
@@ -45,6 +43,10 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(s.pop(), 10)
         self.assertEqual(s.pop(), 11)
         self.assertEqual(s.max(), 10)
+        self.assertEqual(s.pop(), 10)
+        with self.assertRaises(IndexError):
+            s.pop()
+        self.assertEqual(s.max(), None)
 
 
 if __name__ == '__main__':
