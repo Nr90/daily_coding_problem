@@ -7,6 +7,7 @@ implement a function rand7() that returns an integer from 1 to 7 (inclusive).
 """
 import unittest
 from random import randint
+from typing import List
 
 
 def rand5() -> int:
@@ -14,7 +15,17 @@ def rand5() -> int:
 
 
 def rand7() -> int:
-    return 1
+    ints = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 1, 2, 3],
+        [4, 5, 6, 7, 1],
+        [2, 3, 4, 5, 6],
+        [7, 0, 0, 0, 0]
+    ]  # type: List[List[int]]
+    result = 0
+    while not result:
+        result = ints[rand5()-1][rand5()-1]
+    return result
 
 
 class TestSolution(unittest.TestCase):
