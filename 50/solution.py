@@ -34,9 +34,9 @@ class InternalNode:
 
 
 def calc(head: InternalNode) -> int:
-    if not head.lchild_int or not head.rchild_int:
-        return eval(f'{head.lchild_leaf} {head.op} {head.rchild_leaf}')
-    return eval(f'{calc(head.lchild_int)} {head.op} {calc(head.rchild_int)}')
+    l = calc(head.lchild_int) if head.lchild_int else head.lchild_leaf
+    r = calc(head.rchild_int) if head.rchild_int else head.rchild_leaf
+    return eval(f'{l} {head.op} {r}')
 
 
 class TestSolution(unittest.TestCase):
@@ -55,6 +55,14 @@ class TestSolution(unittest.TestCase):
             rchild_leaf=6
         )
         self.assertEqual(calc(head), 18)
+
+    def test_unbalanced(self) -> None:
+        head = InternalNode(
+            op='*',
+            lchild_leaf=3,
+            rchild_int=InternalNode('+', lchild_leaf=4, rchild_leaf=5)
+        )
+        self.assertEqual(calc(head), 27)
 
 
 if __name__ == '__main__':
