@@ -11,11 +11,24 @@ you should return 5,
 since you could buy the stock at 5 dollars and sell it at 10 dollars.
 """
 import unittest
+from typing import List
+
+
+def max_profit(stock_hist: List[int]) -> int:
+    profit = 0
+    timesteps = len(stock_hist)
+    for idx, price in enumerate(stock_hist):
+        if idx >= timesteps - 2:
+            break
+        potential = max(stock_hist[idx+1:]) - price
+        if potential > profit:
+            profit = potential
+    return profit
 
 
 class TestSolution(unittest.TestCase):
     def test_given(self) -> None:
-        self.assertEqual(True, True)
+        self.assertEqual(max_profit([9, 11, 8, 5, 7, 10]), 5)
 
 
 if __name__ == '__main__':
