@@ -22,7 +22,7 @@ from typing import Dict
 
 class URLShortener:
     def __init__(self) -> None:
-        self.urls = defaultdict(None)  # type: Dict[str, str]
+        self.urls = defaultdict(lambda: None)  # type: Dict[str, str]
 
     # https://www.peterbe.com/plog/best-hashing-function-in-python
     def h6(self, s: str) -> str:
@@ -51,6 +51,11 @@ class TestSolution(unittest.TestCase):
             shortener.shorten(url),
             shortener.shorten(url)
         )
+
+    def test_missing_short(self) -> None:
+        shortener = URLShortener()
+        short = 'zLg6wl'
+        self.assertEqual(None, shortener.restore(short))
 
 
 if __name__ == '__main__':
