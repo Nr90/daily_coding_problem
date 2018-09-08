@@ -17,12 +17,12 @@ import unittest
 from collections import defaultdict
 from base64 import b64encode
 from hashlib import md5
-from typing import Dict
+from typing import Dict, Optional
 
 
 class URLShortener:
     def __init__(self) -> None:
-        self.urls = defaultdict(lambda: None)  # type: Dict[str, str]
+        self.urls = defaultdict(lambda: None)  # type: Dict[str, Optional[str]]
 
     # https://www.peterbe.com/plog/best-hashing-function-in-python
     def h6(self, s: str) -> str:
@@ -33,7 +33,7 @@ class URLShortener:
         self.urls[short] = url
         return short
 
-    def restore(self, short: str) -> str:
+    def restore(self, short: str) -> Optional[str]:
         return self.urls[short]
 
 
