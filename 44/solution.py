@@ -20,8 +20,35 @@ import unittest
 from typing import List
 
 
+# https://medium.com/@ssbothwell/counting-inversions-with-merge-sort-4d9910dc95f0
+def merge_sort_inversions(arr: List[int]):
+    if len(arr) == 1:
+        return arr, 0
+
+    left = arr[:len(arr)//2]
+    right = arr[len(arr)//2:]
+    left, left_inv = merge_sort_inversions(left)
+    right, right_inv = merge_sort_inversions(right)
+    inversions = 0 + left_inv + right_inv
+
+    combined = []
+    i, j = 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            combined.append(left[i])
+            i += 1
+        else:
+            combined.append(right[j])
+            j += 1
+            inversions += len(left) - i
+    combined += left[i:]
+    combined += right[j:]
+    return combined, inversions
+
+
 def count_inversions(arr: List[int]) -> int:
-    return 0
+    _, inversions = merge_sort_inversions(arr)
+    return inversions
 
 
 class TestSolution(unittest.TestCase):
