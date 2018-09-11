@@ -11,6 +11,8 @@ Implement an efficient sudoku solver.
 """
 import unittest
 
+# see https://github.com/norvig/pytudes/blob/master/py/sudoku.py
+
 
 class TestSolution(unittest.TestCase):
     def test_given(self) -> None:
