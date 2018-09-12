@@ -56,24 +56,21 @@ function position_valid(sudoku, number, row, col)
            valid_in_box(sudoku, number, row, col)
 end
 
-next_empty_pos = [1 1]
 # Find if there are any empty cells left and assign the next empty cell
-function empty_position_exists(sudoku)
+function check_complete(sudoku)
     for row in 1:9
         for col in 1:9
             if sudoku[row, col] == 0
-                global next_empty_pos
-                next_empty_pos = [row col]
-                return true
+                return false, [row col]
             end
         end
     end
-    return false
+    return true, [0, 0]
 end
 
 function solve(sudoku)
-    # If there are no more empty cells, we are finished
-    if !empty_position_exists(sudoku)
+    complete, next_empty_pos = check_complete(sudoku)
+    if complete
         return true
     end
     row = next_empty_pos[1]
