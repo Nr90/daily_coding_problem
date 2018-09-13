@@ -16,7 +16,7 @@ function pow(x, y)
     exponentiation_by_squaring(1, x, y)
 end
 
-function exponentiation_by_squaring(y, x, n)
+function exponentiation_by_squaring(y, x, n::Int)
     if n < 0
         return exponentiation_by_squaring(y, 1/x, -n)
     end
