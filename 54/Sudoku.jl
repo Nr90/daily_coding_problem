@@ -49,44 +49,41 @@ function valid_in_box(sudoku, number, row, col)
     return true
 end
 
-# Check if the position is valid for the given number by checking all three conditions above
 function position_valid(sudoku, number, row, col)
     return valid_in_row(sudoku, number, row) &&
            valid_in_col(sudoku, number, col) &&
            valid_in_box(sudoku, number, row, col)
 end
 
-# Find if there are any empty cells left and assign the next empty cell
+# Find if there are any empty cells left
 function check_complete(sudoku)
     for row in 1:9
         for col in 1:9
             if sudoku[row, col] == 0
-                return false, [row col]
+                return false, row, col
             end
         end
     end
-    return true, [0, 0]
+    return true, 0, 0
 end
 
 function solve(sudoku)
-    complete, next_empty_pos = check_complete(sudoku)
+    complete, row, col = check_complete(sudoku)
     if complete
         return true
     end
-    row = next_empty_pos[1]
-    col = next_empty_pos[2]
 
     # Try numbers from 1
     for posssible_number in 1:9
         if position_valid(sudoku, posssible_number, row, col)
             sudoku[row, col] = posssible_number
 
-            # If the next function call evalutes to true, then this should be true as well
+            # If solved, propegate up the callstack
             if solve(sudoku)
                 return true
             end
 
-            # If the above did not work then, set the number back to 0 (unassgined)
+            # backtrack
             sudoku[row, col] = 0
         end
     end
