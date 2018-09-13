@@ -13,7 +13,7 @@ using Pow
 using Test
 
 for x in -10:10
-    for y in 0:10
-        @test pow(x, y) == x^y
+    for y in -10:10
+        @test isapprox(pow(x, y),float(x)^y)
     end
 end

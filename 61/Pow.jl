@@ -12,7 +12,7 @@ For example, pow(2, 10) should return 1024.
 module Pow
 export pow
 
-function pow(x, y)
+function pow(x::Int, y::Int)
     exponentiation_by_squaring(1, x, y)
 end
 
