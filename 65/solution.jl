@@ -57,22 +57,19 @@ function print_top_row(m::Array{Int, 2})
 end
 
 function print_right_col(m::Array{Int, 2})
-    rows, cols = size(m)
-    for nr in m[2:rows, cols]
+    for nr in m[2:end, end]
         println(nr)
     end
 end
 
 function print_bottom_row(m::Array{Int, 2})
-    rows, cols = size(m)
-    for nr in m[rows, cols-1:-1:1]
+    for nr in m[end, end-1:-1:1]
         println(nr)
     end
 end
 
 function print_left_col(m::Array{Int, 2})
-    rows, cols = size(m)
-    for nr in m[rows-1:-1:2, 1]
+    for nr in m[end-1:-1:2, 1]
         println(nr)
     end
 end
