@@ -33,6 +33,12 @@ You should print out the following:
 12
 =#
 
+function print_clockwise(m::Array{Int, 1})
+    for e in m
+        println(e)
+    end
+end
+
 function print_clockwise(m::Array{Int, 2})
     rows, cols = size(m)
     print_top_row(m)
@@ -74,34 +80,58 @@ function print_left_col(m::Array{Int, 2})
     end
 end
 
-print_clockwise([
+m = [
     1  2  3  4  5;
     6  7  8  9  10;
     11 12 13 14 15;
     16 17 18 19 20
-])
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
 
-println("NEXT")
-print_clockwise([
+m = [
     1  2  3  4  5;
     6  7  8  9  10;
     11 12 13 14 15
-])
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
 
-println("NEXT")
-print_clockwise([
-    1  2  3  4  5
-])
+m = [
+    1 2 3 4 5
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
 
-println("NEXT")
-print_clockwise([
+m = [
+    1; 2; 3; 4; 5
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
+
+m = [
     1  2;
     3  4
-])
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
 
-println("NEXT")
-print_clockwise([
+m = [
     1  2;
     3  4;
     5  6
-])
+]
+display(m)
+println("\nClockwise:")
+print_clockwise(m)
+println()
