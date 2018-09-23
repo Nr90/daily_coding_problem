@@ -12,20 +12,10 @@ function rand7()
     rand(1:7)
 end
 
-values = [
-    1 2 3 4 5 1 2;
-    3 4 5 1 2 3 4;
-    5 1 2 3 4 5 1;
-    2 3 4 5 1 2 3;
-    4 5 1 2 3 4 5;
-    1 2 3 4 5 1 2;
-    3 4 5 0 0 0 0
-]
-
 function rand5()
-    result = 0
-    while result == 0
-        result = values[rand7(), rand7()]
+   result = rand7()
+    while result > 5
+        result = rand7()
     end
     result
 end
