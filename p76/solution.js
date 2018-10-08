@@ -52,7 +52,7 @@ function minColumnsRemoved(m) {
 };
 
 describe('Problem 76', function() {
-  describe('minCOlumnsRemoved() 1', function() {
+  describe('minColumnsRemoved() 1', function() {
     it('Should return 1', function() {
       m = [
         ['c', 'b', 'a'],
@@ -63,7 +63,7 @@ describe('Problem 76', function() {
     });
   });
 
-  describe('minCOlumnsRemoved() 2', function() {
+  describe('minColumnsRemoved() 2', function() {
     it('Should return 0', function() {
       m = [
         ['a', 'b', 'c', 'd', 'e', 'f']
@@ -72,7 +72,7 @@ describe('Problem 76', function() {
     });
   });
 
-  describe('minCOlumnsRemoved() 3', function() {
+  describe('minColumnsRemoved() 3', function() {
     it('Should return 1', function() {
       m = [
         ['z', 'y', 'x'],
