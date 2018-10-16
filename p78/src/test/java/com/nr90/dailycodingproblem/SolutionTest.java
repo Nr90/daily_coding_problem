@@ -1,8 +1,6 @@
 package com.nr90.dailycodingproblem;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import java.util.LinkedList;
 
 /**

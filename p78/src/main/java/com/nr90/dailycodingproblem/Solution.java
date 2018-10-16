@@ -1,6 +1,5 @@
 package com.nr90.dailycodingproblem;
 import java.util.LinkedList;
-import java.util.Iterator;
 
 /**
  * This problem was asked recently by Google.
