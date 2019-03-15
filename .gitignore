@@ -1,3 +1,6 @@
+.settings
+.classpath
+.project
 .vscode
 .mypy_cache
 */target/*
