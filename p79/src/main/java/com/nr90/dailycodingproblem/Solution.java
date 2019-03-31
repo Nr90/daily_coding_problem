@@ -13,11 +13,19 @@ package com.nr90.dailycodingproblem;
  */
 public class Solution {
     public static boolean canBeMadeSortedByRemovingOneElement(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (isSortedWithoutOne(arr, i)) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public static boolean isSorted(int[] a) {
+    public static boolean isSortedWithoutOne(int[] a, int except) {
         for (int i = 0; i < a.length - 1; i++) {
+            if (i == except) {
+                continue;
+            }
             if (a[i] > a[i + 1]) {
                 return false;
             }
