@@ -20,7 +20,7 @@ function validate(s)
             continue
         end
         # c == ')'
-        if opens == 0
+        if opens < 1
             close_without_open += 1
             continue
         end
